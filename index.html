@@ -4,7 +4,36 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Customer Database (Fortune Flowers)</title>
+
 <link rel="icon" type="image/png" href="floppy_disk.png">
+<body>
+</body>
+<script>
+
+const validPasswords = [
+  "Corbin134+",
+  "corbin134+"
+];
+
+const entered = prompt("Enter Password:");
+
+
+if (!validPasswords.includes(entered)) {
+
+  document.documentElement.innerHTML = `
+      <div>
+        <h1 style="font-size:48px;color:#ff4c4c;">❌ ACCESS DENIED</h1>
+        <p style="font-size:18px;color:#ccc;">You do not have permission to view this page.</p>
+        <p style="font-size:18px;color:#ccc;">Stop trying to get in 😡😡😡</p>
+        <p style="font-size:18px;color:#ccc;">It’s very secure!!</p>
+        <p style="font-size:18px;color:#ccc;">ANTHONY: OWNER</p>
+      </div>
+  `;
+
+  throw new Error("Access denied");
+}
+</script>
+
 <style>
   :root{--bg:#f6f8fa;--card:#fff;--accent:#1f7aef;--muted:#6b6b6b}
   *{box-sizing:border-box}
@@ -28,53 +57,7 @@
   footer{margin-top:12px;font-size:13px;color:var(--muted)}
 </style>
 </head>
-<body>
-  <body>
-<script>
-// 🔒 Multi-password access system with redirect
-const validPasswords = [
-  "corbin134+",
-  "Corbin134+",
-  "corbin134134+",
-  "Corbin134134+"
-];
-
-const entered = prompt("Enter Password:");
-
-// 🔁 If the password is guestflower2025 → redirect to another page
-if (entered === "guestpage") {
-  window.location.href = "guestpage.html"; // 👈 change this to your actual page name
-}
-
-// 🔐 If the password is valid, allow normal access
-else if (validPasswords.includes(entered)) {
-  console.log("Access granted."); // optional
-}
-
-// 🚫 If password invalid → show Access Denied screen
-else {
-  document.body.innerHTML = `
-    <div style="
-      background:#111;
-      color:white;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      font-family:sans-serif;
-      text-align:center;">
-      <div>
-        <h1 style="font-size:48px;color:#ff4c4c;">❌ ACCESS DENIED</h1>
-        <p style="font-size:18px;color:#ccc;">You do not have permission to view this page.</p>
-        <p style="font-size:18px;color:#ccc;">Stop trying to get in 😡😡😡</p>
-        <p style="font-size:18px;color:#ccc;">It’s very secure!!</p>
-        <p style="font-size:18px;color:#ccc;">ANTHONY: OWNER</p>
-      </div>
-    </div>
-  `;
-  throw new Error("Access denied");
-}
-</script>
+  
 
 
 
@@ -93,17 +76,37 @@ else {
   <div class="card" style="margin-top:16px">
     <form id="custForm">
       <input type="hidden" id="custId" />
-      <label>Name</label><input id="name" type="text" required />
-      <label>Address</label><input id="address" type="text" />
-      <label>Email</label><input id="email" type="email" />
-      <label>Phone</label><input id="phone" type="tel" />
+ <label>Name</label>
+<input id="name" type="text" placeholder="Enter customer name" />
+
+<script>
+const nameInput = document.getElementById("name");
+
+nameInput.addEventListener("input", (e) => {
+  const el = e.target;
+  const pos = el.selectionStart;
+  const oldVal = el.value;
+
+
+  const newVal = oldVal.replace(/(^|\s)([a-z])/g, (_, space, letter) => space + letter.toUpperCase());
+
+  if (newVal !== oldVal) {
+    el.value = newVal;
+    el.setSelectionRange(pos, pos);
+  }
+});
+</script>
+  
+      <label>Address</label><input id="address" placeholder="Enter Address" type="text" />
+      <label>Email</label><input id="email" placeholder="Enter Email" type="email" />
+      <label>Phone</label><input id="phone" placeholder="Enter Phone Number" type="tel" />
       <label>Card Brand</label>
       <select id="card_brand">
         <option value="">— none —</option>
         <option>Visa</option><option>Mastercard</option><option>Amex</option><option>Discover</option><option>Other</option>
       </select>
       <label>Card Number 4 Digit</label><input id="card_last4"  inputmode="numeric" placeholder="" />
-      <label>Notes - Card Number</label><textarea id="notes"></textarea>  
+      <label>Notes - Card Number</label><textarea id="notes" placeholder=" e.g. 12345689 exp 01/25 cvv 1234"></textarea>  
       <div style="margin-top:10px;display:flex;gap:8px">
         <button id="saveBtn" class="btn" type="submit">Save</button>
         <button id="cancelBtn" type="button" class="btn ghost">Cancel</button>
