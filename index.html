@@ -152,25 +152,37 @@ phoneInput.addEventListener('input', () => {
     renderList(docs);
   });
 
-  function renderList(items){
-    listBody.innerHTML = '';
-    items.forEach(c=>{
-      const contact = [c.email,c.phone].filter(Boolean).join(' • ');
-      const card = c.card_brand ? `${c.card_brand} • **** ${c.card_last4||'----'}` : '—';
-      const tr=document.createElement('tr');
-      tr.innerHTML=`<td class="nameCell">${c.name||''}</td>
+function renderList(items){
+  listBody.innerHTML = '';
+  items.forEach(c=>{
+    const contact = [c.email,c.phone].filter(Boolean).join(' • ');
+    const card = c.card_brand ? `${c.card_brand} • **** ${c.card_last4||'----'}` : '—';
+
+
+    const mapLink = c.address
+      ? `<a href="https://www.google.com/maps/search/${encodeURIComponent(c.address)}"
+            target="_blank" style="color:#1f7aef;text-decoration:none;">
+            📍 ${c.address}
+         </a>`
+      : '—';
+
+    const tr=document.createElement('tr');
+    tr.innerHTML = `
+      <td class="nameCell">${c.name||''}</td>
       <td>${contact}</td>
       <td>${card}</td>
-      <td>${c.address||''}</td>
+      <td>${mapLink}<br>${c.notes||''}</td>
       <td class="actions">
         <button class="btn ghost editBtn" data-id="${c.id}">Edit</button>
         <button class="btn ghost delBtn" data-id="${c.id}">Del</button>
       </td>`;
-      listBody.appendChild(tr);
-    });
-    document.querySelectorAll('.editBtn').forEach(b=>b.onclick=()=>loadDoc(b.dataset.id));
-    document.querySelectorAll('.delBtn').forEach(b=>b.onclick=()=>delDoc(b.dataset.id));
-  }
+    listBody.appendChild(tr);
+  });
+
+  document.querySelectorAll('.editBtn').forEach(b=>b.onclick=()=>loadDoc(b.dataset.id));
+  document.querySelectorAll('.delBtn').forEach(b=>b.onclick=()=>delDoc(b.dataset.id));
+}
+
 
   async function loadDoc(id){
     const snap = await getDocs(collection(db,'customers'));
