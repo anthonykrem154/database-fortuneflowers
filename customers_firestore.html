@@ -28,6 +28,35 @@
 </style>
 </head>
 <body>
+  <body>
+<script>
+// 🔒 Shared access password system
+const secretCode = "corbin134+"; // <-- change this to your password
+const entered = prompt("Enter access code:");
+
+if (entered !== secretCode) {
+  // Replace the entire page content safely
+  document.body.innerHTML = `
+    <div style="
+      background:#111;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      font-family:sans-serif;
+      text-align:center;">
+      <div>
+        <h1 style="font-size:48px;color:#ff4c4c;">❌ ACCESS DENIED</h1>
+        <p style="font-size:18px;color:#ccc;">You do not have permission to view this page.</p>
+      </div>
+    </div>
+  `;
+  // Stop all further scripts (prevent data or tables from loading)
+  throw new Error("Access denied");
+}
+</script>
+
 <div class="wrap">
   <header>
     <h1>💾 Customer Database — Made By:Anthony — Fortune Flowers</h1>
