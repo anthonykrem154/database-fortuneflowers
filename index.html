@@ -101,6 +101,24 @@ if (entered !== secretCode) {
     measurementId: "G-K388ZNWC2K"
   };
 
+const phoneInput = document.getElementById('phone');
+
+phoneInput.addEventListener('input', () => {
+
+  let digits = phoneInput.value.replace(/\D/g, '');
+
+
+  if (digits.length > 10) digits = digits.slice(0, 10);
+
+  let formatted = '';
+  if (digits.length > 0) formatted = digits.slice(0, 3);
+  if (digits.length >= 4) formatted += '-' + digits.slice(3, 6);
+  if (digits.length >= 7) formatted += '-' + digits.slice(6, 10);
+
+  phoneInput.value = formatted;
+});
+
+
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getFirestore, collection, doc, setDoc, addDoc, onSnapshot, orderBy, query, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
