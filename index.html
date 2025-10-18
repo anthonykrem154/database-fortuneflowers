@@ -31,10 +31,28 @@
 <body>
   <body>
 <script>
-const secretCode = "corbin134+";
+// 🔒 Multi-password access system with redirect
+const validPasswords = [
+  "corbin134+",
+  "Corbin134+",
+  "corbin134134+",
+  "Corbin134134+"
+];
+
 const entered = prompt("Enter Password:");
 
-if (entered !== secretCode) {
+// 🔁 If the password is guestflower2025 → redirect to another page
+if (entered === "guestpage") {
+  window.location.href = "guestpage.html"; // 👈 change this to your actual page name
+}
+
+// 🔐 If the password is valid, allow normal access
+else if (validPasswords.includes(entered)) {
+  console.log("Access granted."); // optional
+}
+
+// 🚫 If password invalid → show Access Denied screen
+else {
   document.body.innerHTML = `
     <div style="
       background:#111;
@@ -48,15 +66,17 @@ if (entered !== secretCode) {
       <div>
         <h1 style="font-size:48px;color:#ff4c4c;">❌ ACCESS DENIED</h1>
         <p style="font-size:18px;color:#ccc;">You do not have permission to view this page.</p>
-                <p style="font-size:18px;color:#ccc;">stop trying to get in 😡😡😡</p>
-                <p style="font-size:18px;color:#ccc;">its very secure!!</p>
-                <p style="font-size:18px;color:#ccc;">ANTHONY:OWNER</p>
+        <p style="font-size:18px;color:#ccc;">Stop trying to get in 😡😡😡</p>
+        <p style="font-size:18px;color:#ccc;">It’s very secure!!</p>
+        <p style="font-size:18px;color:#ccc;">ANTHONY: OWNER</p>
       </div>
     </div>
   `;
   throw new Error("Access denied");
 }
 </script>
+
+
 
 <div class="wrap">
   <header>
