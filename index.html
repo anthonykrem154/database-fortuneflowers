@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Customer Database (Hide Names Feature)</title>
+<title>Customer Database (Fortune Flowers)</title>
 <style>
   :root{--bg:#f6f8fa;--card:#fff;--accent:#1f7aef;--muted:#6b6b6b}
   *{box-sizing:border-box}
@@ -30,12 +30,10 @@
 <body>
   <body>
 <script>
-// 🔒 Shared access password system
-const secretCode = "corbin134+"; // <-- change this to your password
+const secretCode = "corbin134+";
 const entered = prompt("Enter access code:");
 
 if (entered !== secretCode) {
-  // Replace the entire page content safely
   document.body.innerHTML = `
     <div style="
       background:#111;
@@ -52,7 +50,6 @@ if (entered !== secretCode) {
       </div>
     </div>
   `;
-  // Stop all further scripts (prevent data or tables from loading)
   throw new Error("Access denied");
 }
 </script>
@@ -90,12 +87,10 @@ if (entered !== secretCode) {
     </form>
   </div>
 
-  <footer>This whole wbesite is made by Anthony</footer>
+  <footer>This whole website database is made by Anthony</footer>
 </div>
 
-<!-- Firebase SDK -->
 <script type="module">
-  // 🔹 Your Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyBmn8Tx8PN-Pe_CweW0s-Tj__QWyzabq6A",
     authDomain: "data-base-6c45a.firebaseapp.com",
@@ -112,7 +107,6 @@ if (entered !== secretCode) {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Elements
   const listBody = document.getElementById('listBody');
   const custForm = document.getElementById('custForm');
   const custId = document.getElementById('custId');
@@ -130,7 +124,6 @@ if (entered !== secretCode) {
   const clearAllBtn = document.getElementById('clearAllBtn');
   const toggleNamesBtn = document.getElementById('toggleNamesBtn');
 
-  // 🔹 Real-time listener (shows all customers)
   const q = query(collection(db, 'customers'), orderBy('updated','desc'));
   onSnapshot(q, snap => {
     const docs = [];
@@ -231,7 +224,6 @@ if (entered !== secretCode) {
     else{if(c==','){out.push(cur);cur='';}else if(c=='"'){q=true;}else cur+=c;}}
     out.push(cur);return out;}
 
-  // 🔹 Hide/Show Names button logic
   let namesHidden = false;
   toggleNamesBtn.addEventListener('click', () => {
     namesHidden = !namesHidden;
