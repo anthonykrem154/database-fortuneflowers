@@ -1,0 +1,14 @@
+{
+  "name": "customer-database",
+  "version": "1.0.0",
+  "description": "Customer Database (Fortune Flowers) desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . CustomerDatabase --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "devDependencies": {
+    "electron": "^38.3.0",
+    "electron-packager": "^17.1.2"
+  }
+}
