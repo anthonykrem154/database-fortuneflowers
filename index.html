@@ -4,9 +4,35 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Customer Database (Fortune Flowers)</title>
-
 <link rel="icon" type="image/png" href="floppy_disk.png">
 <body>
+<div style="text-align:center;margin-top:40px;">
+  <a href="https://github.com/anthonykrem154/database-fortuneflowers/releases/download/v1.0/CustomerDatabase.exe"
+     class="download-btn">
+     💾 Download Fortune Flowers App (.exe)
+  </a>
+</div>
+
+<style>
+.download-btn {
+  display:inline-block;
+  background:#1f7aef;
+  color:white;
+  font-weight:600;
+  padding:14px 28px;
+  border-radius:10px;
+  text-decoration:none;
+  box-shadow:0 4px 8px rgba(0,0,0,0.15);
+  transition:all 0.3s ease;
+}
+.download-btn:hover {
+  background:#145ccc;
+  transform:translateY(-2px);
+}
+</style>
+
+
+
 </body>
 <script>
 
@@ -55,6 +81,18 @@ if (!validPasswords.includes(entered)) {
   th,td{padding:8px;border-bottom:1px solid #eef1f3;text-align:left;font-size:14px}
   .actions button{margin-right:6px}
   footer{margin-top:12px;font-size:13px;color:var(--muted)}
+  .download-btn {
+  display: inline-block;
+  background-color: #1f7aef;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+  }
 </style>
 </head>
   
@@ -96,7 +134,7 @@ nameInput.addEventListener("input", (e) => {
   }
 });
 </script>
-  
+
       <label>Address</label><input id="address" placeholder="Enter Address" type="text" />
       <label>Email</label><input id="email" placeholder="Enter Email" type="email" />
       <label>Phone</label><input id="phone" placeholder="Enter Phone Number" type="tel" />
